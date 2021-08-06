@@ -8,7 +8,7 @@ import com.nw.sandbox.visualization.maze.MazeFrame;
 
 public class MazeVisualizer extends BaseVisualizer {
 	private static final String FILE_NAME = "src/main/java/com/nw/sandbox/visualization/maze/maze_101_101.txt";
-	private static final int BLOCK_SIDE = 6;
+	private static final int BLOCK_SIZE = 6;
     private static final int DELAY = 1;
     private static final int d[][] = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
 
@@ -20,7 +20,7 @@ public class MazeVisualizer extends BaseVisualizer {
 	@Override
 	public BaseFrame initFrame(int sceneWidth, int sceneHeight) {
 		MazeData data = (MazeData) getData();
-        return new MazeFrame("Maze Solver", data.M() * BLOCK_SIDE, data.N() * BLOCK_SIDE);
+        return new MazeFrame("Maze Solver", data.W() * BLOCK_SIZE, data.H() * BLOCK_SIZE);
 	}
 
 	@Override

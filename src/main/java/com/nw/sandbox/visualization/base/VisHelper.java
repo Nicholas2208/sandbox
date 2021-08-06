@@ -4,9 +4,12 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
+
+import javax.swing.ImageIcon;
 
 public class VisHelper {
 	public static final Color Red = new Color(0xF44336);
@@ -72,6 +75,12 @@ public class VisHelper {
     public void fillRectangle(int x, int y, int w, int h) {
         Rectangle2D rectangle = new Rectangle2D.Double(x, y, w, h);
         g2d.fill(rectangle);
+    }
+    
+    public void putImage(int x, int y, String imageURL) {
+        ImageIcon icon = new ImageIcon(imageURL);
+        Image image = icon.getImage();
+        g2d.drawImage(image, x, y, null);
     }
 
 }

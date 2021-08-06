@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class MazeData {
 	public static final char ROAD = ' ';
     public static final char WALL = '#';
-	private int N, M;
+	private int W, H;
 	private char[][] maze;
 	private int entranceX, entranceY;
     private int exitX, exitY;
@@ -22,17 +22,17 @@ public class MazeData {
 			File file = new File(fileName);
 			FileInputStream fis = new FileInputStream(file);
 			scanner = new Scanner(new BufferedInputStream(fis), "UTF-8");
-			String nmLine = scanner.nextLine();
-			String[] nm = nmLine.trim().split("\\s+");
-			N = Integer.parseInt(nm[0]);
-            M = Integer.parseInt(nm[1]);
-            maze = new char[N][M];
-            visited = new boolean[N][M];
-            path = new boolean[N][M];
-            result = new boolean[N][M];
-            for (int i = 0; i < N; i++) {
+			String whLine = scanner.nextLine();
+			String[] wh = whLine.trim().split("\\s+");
+			W = Integer.parseInt(wh[0]);
+            H = Integer.parseInt(wh[1]);
+            maze = new char[W][H];
+            visited = new boolean[W][H];
+            path = new boolean[W][H];
+            result = new boolean[W][H];
+            for (int i = 0; i < W; i++) {
             	String line = scanner.nextLine();
-            	for (int j = 0; j < M; j++) {
+            	for (int j = 0; j < H; j++) {
                     maze[i][j] = line.charAt(j);
                 }
             }
@@ -46,8 +46,8 @@ public class MazeData {
 		
 		this.entranceX = 1;
         this.entranceY = 0;
-        this.exitX = N - 2;
-        this.exitY = M - 1;
+        this.exitX = W - 2;
+        this.exitY = H - 1;
 	}
 	
 	public int getEntranceX() {
@@ -66,12 +66,12 @@ public class MazeData {
         return exitY;
     }
 
-    public int N() {
-        return N;
+    public int W() {
+        return W;
     }
 
-    public int M() {
-        return M;
+    public int H() {
+        return H;
     }
     
     public char getMaze(int i, int j) {
@@ -79,13 +79,13 @@ public class MazeData {
     }
     
     public boolean inArea(int x, int y) {
-        return x >= 0 && x < N && y >= 0 && y < M;
+        return x >= 0 && x < W && y >= 0 && y < H;
     }
 	
 	public void print() {
-        System.out.println(N + " " + M);
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < M; j++) {
+        System.out.println(W + " " + H);
+        for (int i = 0; i < W; i++) {
+            for (int j = 0; j < H; j++) {
                 System.out.print(maze[i][j]);
             }
             System.out.println();

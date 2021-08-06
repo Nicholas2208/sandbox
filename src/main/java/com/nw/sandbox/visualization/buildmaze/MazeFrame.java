@@ -1,4 +1,4 @@
-package com.nw.sandbox.visualization.maze;
+package com.nw.sandbox.visualization.buildmaze;
 
 import com.nw.sandbox.visualization.base.BaseFrame;
 import com.nw.sandbox.visualization.base.VisHelper;
@@ -16,16 +16,17 @@ public class MazeFrame extends BaseFrame {
         int h = getCanvasHeight() / mazeData.H();
         for (int i = 0; i < mazeData.W(); i++) {
         	for (int j = 0; j < mazeData.H(); j++) {
-        		if (mazeData.getMaze(i, j) == MazeData.WALL) {
-        			visHelper.setColor(VisHelper.LightBlue);
+        		if (mazeData.enableMist && mazeData.inMist[i][j]) {
+        			visHelper.setColor(VisHelper.Black);
         		}else {
-        			visHelper.setColor(VisHelper.White);
-        		}
-        		if (mazeData.path[i][j]) {
-        			visHelper.setColor(VisHelper.Yellow);
-        		}
-        		if (mazeData.result[i][j]) {
-        			visHelper.setColor(VisHelper.Red);
+        			if (mazeData.maze[i][j] == MazeData.WALL) {
+        				visHelper.setColor(VisHelper.LightBlue);
+        			}else {
+        				visHelper.setColor(VisHelper.White);
+        			}
+        			if (mazeData.path[i][j]) {
+        				visHelper.setColor(VisHelper.Yellow);
+        			}
         		}
         		visHelper.fillRectangle(j * w, i * h, w, h);
         	}
