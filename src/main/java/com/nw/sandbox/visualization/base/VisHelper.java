@@ -2,11 +2,14 @@ package com.nw.sandbox.visualization.base;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 
 import javax.swing.ImageIcon;
@@ -83,4 +86,27 @@ public class VisHelper {
         g2d.drawImage(image, x, y, null);
     }
 
+    public void drawText(String text, int centerx, int centery) {
+    	if (text == null) {
+            throw new IllegalArgumentException("Text is null in drawText function!");
+        }
+    	FontMetrics metrics = g2d.getFontMetrics();
+        int w = metrics.stringWidth(text);
+        int h = metrics.getDescent();
+        g2d.drawString(text, centerx - w / 2, centery + h);
+    }
+    
+    public void drawLine(double x1, double y1, double x2, double y2){
+        Line2D line = new Line2D.Double(x1, y1, x2, y2);
+        g2d.draw(line);
+    }
+    
+    public void fillTriangle(int x1, int y1, int x2, int y2, int x3, int y3) {
+        GeneralPath path = new GeneralPath();
+        path.moveTo(x1, y1);
+        path.lineTo(x2, y2);
+        path.lineTo(x3, y3);
+        path.closePath();
+        g2d.fill(path);
+    }
 }

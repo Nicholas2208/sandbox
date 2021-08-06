@@ -50,14 +50,11 @@ public class MineSweeperData {
 	}
 
 	private void generateMines() {
-		int bombs = 0;
 		for(int i = 0; i < mines.length; i++) {
 			for(int j = 0; j < mines[i].length; j++) {
 				mines[i][j] = Math.random() < 0.15;
-				if(mines[i][j]) {bombs++;}
 			}
 		}
-		System.out.println(bombs);
 	}
 
 	public int W() {
